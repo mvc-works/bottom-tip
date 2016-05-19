@@ -4,6 +4,8 @@ Bottom Tip(an at-bottom message tip)
 
 Note: you have to maintain logs manually with this module.
 
+Prototype https://youtu.be/wjLxXS0CV4k
+
 I intented to replace [webpack-hud][hud] with it
 but it turned out to be not as useful as webpack-hud
 since messages from Webpack is quite messy. 

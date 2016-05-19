@@ -25,5 +25,13 @@
   "dependencies": {
     "diffhtml": "^0.8.2",
     "hsl": "^0.1.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mvc-works/bottom-tip.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mvc-works/bottom-tip/issues"
+  },
+  "homepage": "https://github.com/mvc-works/bottom-tip#readme"
 }
