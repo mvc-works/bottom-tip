@@ -1,5 +1,5 @@
 
-import * as diffhtml from 'diffhtml'
+import * as diffhtml from 'diffhtml/dist/cjs'
 import hsl from 'hsl'
 import {createElement, createTextElement} from './dom'
 
@@ -20,6 +20,6 @@ export function renderControl(target, makeInactive, makeOk, makeWarn, makeError)
       createTextElement('error')
     ])
   ])
-  
+
   diffhtml.innerHTML(target, controlPanel)
 }

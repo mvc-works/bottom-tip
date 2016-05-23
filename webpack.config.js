@@ -12,7 +12,6 @@ module.exports = {
     path: 'build/'
   },
   module: {
-    noParse: [/diffhtml/],
     loaders: [
       {
         test: /\.js$/,

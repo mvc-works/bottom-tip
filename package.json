@@ -1,6 +1,6 @@
 {
   "name": "bottom-tip",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A div for displaying console.log messages, with some styles",
   "main": "lib/bottom-tip.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "diffhtml": "^0.8.2",
+    "diffhtml": "^0.8.4",
     "hsl": "^0.1.1"
   },
   "repository": {

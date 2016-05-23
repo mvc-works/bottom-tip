@@ -1,5 +1,5 @@
 
-import * as diffhtml from 'diffhtml'
+import * as diffhtml from 'diffhtml/dist/cjs'
 import hsl from 'hsl'
 import {createElement, createTextElement} from './dom'
 
@@ -28,6 +28,7 @@ function panelStyle(type, content) {
     font-family: Source Code Pro, Menlo, monospace;
     font-size: 12px;
     box-sizing: border-box;
+    padding: 0 16px;
     `
   } else {
     return `
