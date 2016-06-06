@@ -29,6 +29,7 @@ function panelStyle(type, content) {
     font-size: 12px;
     box-sizing: border-box;
     padding: 0 16px;
+    z-index: 999999;
     `
   } else {
     return `
@@ -47,6 +48,7 @@ function panelStyle(type, content) {
     box-sizing: border-box;
     transition-duration: 300ms;
     overflow: auto;
+    z-index: 999999;
     `
   }
 }
