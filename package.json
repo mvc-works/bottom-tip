@@ -23,8 +23,8 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "diffhtml": "^0.8.4",
-    "hsl": "^0.1.1"
+    "hsl": "^0.1.1",
+    "virtual-dom": "^2.1.1"
   },
   "repository": {
     "type": "git",

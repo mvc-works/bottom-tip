@@ -1,5 +1,5 @@
 
-var render = require('./bottom-tip').render
+var renderTip = require('./bottom-tip').renderTip
 var renderControl = require('./control').renderControl
 require('./draft')
 
@@ -8,7 +8,7 @@ var contentRef = 'default debug content'
 var displayTarget = document.createElement('div')
 
 var displayMsg = function() {
-  render(displayTarget, typeRef, contentRef)
+  renderTip(displayTarget, typeRef, contentRef)
 }
 
 function makeInactive(content) {
@@ -62,12 +62,12 @@ if (module.hot) {
     displayMsg()
     console.log('should accept')
   })
-  
+
   module.hot.accept('./control', function() {
     renderControl = require('./control').renderControl
     renderControl(container, makeInactive, makeOk, makeWarn, makeError)
   })
-  
+
   module.hot.accept('./draft', function() {
     console.log('handling draft')
     require('./draft')

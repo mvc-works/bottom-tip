@@ -1,25 +1,31 @@
 
-import * as diffhtml from 'diffhtml/dist/cjs'
+import h from 'virtual-dom/h'
+import diff from 'virtual-dom/diff'
+import patch from 'virtual-dom/patch'
+import createElement from 'virtual-dom/create-element'
 import hsl from 'hsl'
-import {createElement, createTextElement} from './dom'
 
-diffhtml.enableProllyfill()
+var _rendered = false
+var _oldTree = null
 
 export function renderControl(target, makeInactive, makeOk, makeWarn, makeError) {
-  var controlPanel = createElement('div', {}, [
-    createElement('button', {onclick: makeInactive}, [
-      createTextElement('inactive')
-    ]),
-    createElement('button', {onclick: makeOk}, [
-      createTextElement('ok')
-    ]),
-    createElement('button', {onclick: makeWarn}, [
-      createTextElement('warn')
-    ]),
-    createElement('button', {onclick: makeError}, [
-      createTextElement('error')
-    ])
+
+  var tree = h('div', {}, [
+    h('button', {onclick: makeInactive}, ['inactive']),
+    h('button', {onclick: makeOk}, ['ok']),
+    h('button', {onclick: makeWarn}, ['warn']),
+    h('button', {onclick: makeError}, ['error'])
   ])
 
-  diffhtml.innerHTML(target, controlPanel)
+  if (_rendered) {
+    var patches = diff(_oldTree, tree)
+    target = patch(target, patches)
+    _oldTree = tree
+  } else {
+    var rootNode = createElement(tree)
+    target.appendChild(rootNode)
+    _oldTree = tree
+    _rendered = true
+  }
+
 }
