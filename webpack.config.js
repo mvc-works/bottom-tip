@@ -1,26 +1,24 @@
+var path = require("path");
 
 module.exports = {
+  mode: "development",
   entry: {
-    main: [
-      'webpack/hot/only-dev-server',
-      'webpack-dev-server/client?http://localhost:8080',
-      './src/main.js'
-    ]
+    main: ["./src/main"],
   },
   output: {
-    filename: 'bundle.js',
-    path: 'build/'
+    filename: "bundle.js",
+    path: path.join(__dirname, "/build"),
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/,
+        test: /\.tsx?$/,
+        loader: "awesome-typescript-loader",
         exclude: /node_modules/,
-        loader: 'babel-loader?presets[]=es2015!eslint'
-      }
-    ]
+      },
+    ],
   },
-  eslint: {
-    emitWarning: true
-  }
-}
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
+  },
+};
