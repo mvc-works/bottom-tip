@@ -30,7 +30,7 @@ function makeWarn(content) {
 
 function makeError(content) {
   typeRef = "error";
-  contentRef = "this is \n an error, and \n it is \n long";
+  contentRef = "this is \n an error, and \n it is \n long \nin \nmultiple lines";
   displayMsg();
 }
 

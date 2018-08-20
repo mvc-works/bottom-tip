@@ -29,7 +29,6 @@ function panelStyle(type, content) {
       fontFamily: "Source Code Pro, Menlo, monospace",
       fontSize: "12px",
       boxSizing: "border-box",
-      padding: "0 16px",
       zIndex: 999999,
     };
   } else {
@@ -40,7 +39,6 @@ function panelStyle(type, content) {
       left: 0,
       width: "100%",
       maxHeight: "100%",
-      padding: "16px",
       backgroundColor: typeColorMap[type],
       fontFamily: "Source Code Pro, Menlo, monospace",
       whiteSpace: "pre",
@@ -49,7 +47,7 @@ function panelStyle(type, content) {
       fontSize: "12px",
       boxSizing: "border-box",
       transitionDuration: "300ms",
-      overflow: "auto",
+      overflowX: "auto",
       zIndex: 999999,
     };
   }
@@ -65,6 +63,12 @@ var styleClose = {
   userSelect: "none",
 };
 
+var styleContent = {
+  width: "100%",
+  padding: "16px",
+  overflowX: "auto",
+};
+
 function contentStyle(type) {
   return {};
 }
@@ -77,7 +81,7 @@ export function renderTip(target, type, content) {
   // console.debug(':debug:', type, content)
   var tree = h("div", { style: panelStyle(type, content) }, [
     h("div", { style: contentStyle(type) }, []),
-    h("div", {}, [content]),
+    h("div", { style: styleContent }, [content]),
     h("div", { style: styleClose, className: "bottom-tip-close" }, ["×"]),
   ]);
   if (_rendered) {
