@@ -1,11 +1,14 @@
 {
   "name": "bottom-tip",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "A div for displaying console.log messages, with some styles",
   "main": "lib/bottom-tip.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "rm -rf lib; gulp compile"
+    "dev": "webpack-dev-server --hot",
+    "watch": "webpack-dev-server --hot",
+    "prepublish": "yarn compile",
+    "compile": "tsc --outDir lib/",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "devtools"
@@ -13,14 +16,12 @@
   "author": "jiyinyiyong",
   "license": "MIT",
   "devDependencies": {
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.9.0",
-    "eslint": "^2.10.2",
-    "eslint-loader": "^1.3.0",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
-    "webpack": "^1.13.0",
-    "webpack-dev-server": "^1.14.1"
+    "awesome-typescript-loader": "^5.2.0",
+    "prettier": "^1.14.2",
+    "typescript": "^3.0.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
     "hsl": "^0.1.1",
