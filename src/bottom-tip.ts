@@ -76,7 +76,7 @@ var _rendered = false;
 var _oldTree: VTree = null;
 var _rootNode: Element = null;
 
-export function renderTip(target: HTMLDivElement, type: PanelKind, content: string = "") {
+export function renderTip(target: HTMLDivElement, type: PanelKind, content: string) {
   // console.debug(':debug:', type, content)
   var tree = h("div", { style: panelStyle(type, content) }, [
     h("div", { style: contentStyle(type) }, []),
@@ -109,5 +109,5 @@ export default function(type: PanelKind, content: string) {
     mountTarget = document.createElement("div");
     document.body.append(mountTarget);
   }
-  renderTip(mountTarget, type, content);
+  renderTip(mountTarget, type, content || "");
 }
