@@ -1,13 +1,10 @@
-import h from "virtual-dom/h";
-import diff from "virtual-dom/diff";
-import patch from "virtual-dom/patch";
+import { h, diff, patch } from "virtual-dom";
 import createElement from "virtual-dom/create-element";
-import hsl from "hsl";
 
 var _rendered = false;
 var _oldTree = null;
 
-export function renderControl(target, makeInactive, makeOk, makeWarn, makeError) {
+export function renderControl(target: HTMLDivElement, makeInactive: () => void, makeOk: () => void, makeWarn: () => void, makeError: () => void) {
   var tree = h("div", {}, [
     h("button", { onclick: makeInactive }, ["inactive"]),
     h("button", { onclick: makeOk }, ["ok"]),

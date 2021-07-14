@@ -19,11 +19,10 @@ npm i --save-dev bottom-tip
 ```js
 import render from "bottom-tip";
 
-var targetElement = document.createElement("div");
-document.body.append(targetElement);
-render(targetElement, "warn", "some warning message");
+render("warn", "some warning message");
+
 setTimeout(function() {
-  render(targetElement, "inactive");
+  render("inactive", null);
 }, 2000);
 ```
 
@@ -39,8 +38,8 @@ Types:
 Try this project:
 
 ```bash
-yarn watch
-# open http://localhost:8080
+yarn vite
+# open http://localhost:3000
 ```
 
 ### License

@@ -7,12 +7,13 @@
     "noImplicitThis": true,
     "strictNullChecks": false,
     "moduleResolution": "node",
-    "module": "es6",
-    "target": "es2015",
+    "module": "es2020",
+    "target": "es2016",
     "lib": ["es2016", "dom"],
     "types": [],
     "baseUrl": "./src/",
-    "plugins": []
+    "plugins": [],
+    "outDir": "lib/"
   },
   "awesomeTypescriptLoaderOptions": {
     "useCache": true
