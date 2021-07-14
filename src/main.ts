@@ -12,7 +12,7 @@ function makeInactive() {
 }
 
 var displayMsg = function() {
-  renderBottomTip(typeRef, contentRef);
+  renderBottomTip(typeRef, contentRef || null);
 };
 
 function makeOk() {

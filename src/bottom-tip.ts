@@ -1,4 +1,4 @@
-import { h, diff, patch } from "virtual-dom";
+import { h, diff, patch, VTree } from "virtual-dom";
 import createElement from "virtual-dom/create-element";
 
 var typeColorMap = {
@@ -73,10 +73,10 @@ function contentStyle(type: PanelKind) {
 }
 
 var _rendered = false;
-var _oldTree = null;
-var _rootNode = null;
+var _oldTree: VTree = null;
+var _rootNode: Element = null;
 
-export function renderTip(target: HTMLDivElement, type: PanelKind, content: string) {
+export function renderTip(target: HTMLDivElement, type: PanelKind, content: string = "") {
   // console.debug(':debug:', type, content)
   var tree = h("div", { style: panelStyle(type, content) }, [
     h("div", { style: contentStyle(type) }, []),
@@ -95,7 +95,7 @@ export function renderTip(target: HTMLDivElement, type: PanelKind, content: stri
 
     // bind close event
     _rootNode.addEventListener("click", (event) => {
-      if (event.target.className === "bottom-tip-close") {
+      if ((event.target as any).className === "bottom-tip-close") {
         renderTip(target, "inactive", "");
       }
     });

@@ -1,6 +1,6 @@
 {
   "name": "bottom-tip",
-  "version": "0.1.2-a1",
+  "version": "0.1.2-a2",
   "description": "A div for displaying console.log messages, with some styles",
   "main": "lib/bottom-tip.js",
   "scripts": {
