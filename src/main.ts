@@ -1,34 +1,33 @@
-import { renderTip } from "./bottom-tip";
+import renderBottomTip, { PanelKind } from "./bottom-tip";
 import { renderControl } from "./control";
 
 import "./draft";
 
-var typeRef = "ok";
+var typeRef: PanelKind = "ok";
 var contentRef = "default debug content";
-var displayTarget = document.createElement("div");
 
-function makeInactive(content) {
+function makeInactive() {
   typeRef = "inactive";
   displayMsg();
 }
 
 var displayMsg = function() {
-  renderTip(displayTarget, typeRef, contentRef);
+  renderBottomTip(typeRef, contentRef || null);
 };
 
-function makeOk(content) {
+function makeOk() {
   typeRef = "ok";
   contentRef = "ok";
   displayMsg();
 }
 
-function makeWarn(content) {
+function makeWarn() {
   typeRef = "warn";
   contentRef = "this is \n a warning";
   displayMsg();
 }
 
-function makeError(content) {
+function makeError() {
   typeRef = "error";
   contentRef = "this is \n an error, and \n it is \n long \nin \nmultiple lines";
   displayMsg();
@@ -54,23 +53,20 @@ let container;
 window.addEventListener("load", function(event) {
   container = document.querySelector("#container");
   renderControl(container, makeInactive, makeOk, makeWarn, makeError);
-  document.body.appendChild(displayTarget);
   displayMsg();
 });
 
-declare var module: any;
-
-if (module.hot) {
-  module.hot.accept("./bottom-tip", function() {
+if ((import.meta as any).hot) {
+  (import.meta as any).hot.accept("./bottom-tip", function() {
     displayMsg();
     console.log("should accept");
   });
 
-  module.hot.accept("./control", function() {
+  (import.meta as any).hot.accept("./control", function() {
     renderControl(container, makeInactive, makeOk, makeWarn, makeError);
   });
 
-  module.hot.accept("./draft", function() {
+  (import.meta as any).hot.accept("./draft", function() {
     console.log("handling draft");
   });
 }

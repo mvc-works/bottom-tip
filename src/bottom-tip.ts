@@ -1,8 +1,5 @@
-import h from "virtual-dom/h";
-import diff from "virtual-dom/diff";
-import patch from "virtual-dom/patch";
+import { h, diff, patch, VTree } from "virtual-dom";
 import createElement from "virtual-dom/create-element";
-import hsl from "hsl";
 
 var typeColorMap = {
   ok: "#fedcd2",
@@ -11,7 +8,9 @@ var typeColorMap = {
   warn: "#dcb239",
 };
 
-function panelStyle(type, content) {
+export type PanelKind = "inactive" | "ok" | "warn" | "error";
+
+function panelStyle(type: PanelKind, content: string) {
   var lineCount = content.split("\n").length;
   if (type == "inactive") {
     return {
@@ -69,15 +68,15 @@ var styleContent = {
   overflowX: "auto",
 };
 
-function contentStyle(type) {
+function contentStyle(type: PanelKind) {
   return {};
 }
 
 var _rendered = false;
-var _oldTree = null;
-var _rootNode = null;
+var _oldTree: VTree = null;
+var _rootNode: Element = null;
 
-export function renderTip(target, type, content) {
+export function renderTip(target: HTMLDivElement, type: PanelKind, content: string) {
   // console.debug(':debug:', type, content)
   var tree = h("div", { style: panelStyle(type, content) }, [
     h("div", { style: contentStyle(type) }, []),
@@ -96,9 +95,19 @@ export function renderTip(target, type, content) {
 
     // bind close event
     _rootNode.addEventListener("click", (event) => {
-      if (event.target.className === "bottom-tip-close") {
+      if ((event.target as any).className === "bottom-tip-close") {
         renderTip(target, "inactive", "");
       }
     });
   }
+}
+
+let mountTarget: HTMLDivElement = null;
+
+export default function(type: PanelKind, content: string) {
+  if (mountTarget == null) {
+    mountTarget = document.createElement("div");
+    document.body.append(mountTarget);
+  }
+  renderTip(mountTarget, type, content || "");
 }
