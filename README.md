@@ -30,6 +30,7 @@ Types:
 
 - `inactive`
 - `ok`
+- `ok~`(show and then hide)
 - `warn`
 - `error`
 

@@ -4,10 +4,18 @@ import createElement from "virtual-dom/create-element";
 var _rendered = false;
 var _oldTree = null;
 
-export function renderControl(target: HTMLDivElement, makeInactive: () => void, makeOk: () => void, makeWarn: () => void, makeError: () => void) {
+export function renderControl(
+  target: HTMLDivElement,
+  makeInactive: () => void,
+  makeOk: () => void,
+  makeOkPop: () => void,
+  makeWarn: () => void,
+  makeError: () => void
+) {
   var tree = h("div", {}, [
     h("button", { onclick: makeInactive }, ["inactive"]),
     h("button", { onclick: makeOk }, ["ok"]),
+    h("button", { onclick: makeOkPop }, ["ok~"]),
     h("button", { onclick: makeWarn }, ["warn"]),
     h("button", { onclick: makeError }, ["error"]),
   ]);

@@ -17,7 +17,13 @@ var displayMsg = function() {
 
 function makeOk() {
   typeRef = "ok";
-  contentRef = "ok";
+  contentRef = "Ok";
+  displayMsg();
+}
+
+function makeOkPop() {
+  typeRef = "ok~";
+  contentRef = "Ok";
   displayMsg();
 }
 
@@ -52,7 +58,7 @@ let container;
 
 window.addEventListener("load", function(event) {
   container = document.querySelector("#container");
-  renderControl(container, makeInactive, makeOk, makeWarn, makeError);
+  renderControl(container, makeInactive, makeOk, makeOkPop, makeWarn, makeError);
   displayMsg();
 });
 
@@ -63,7 +69,7 @@ if ((import.meta as any).hot) {
   });
 
   (import.meta as any).hot.accept("./control", function() {
-    renderControl(container, makeInactive, makeOk, makeWarn, makeError);
+    renderControl(container, makeInactive, makeOk, makeOkPop, makeWarn, makeError);
   });
 
   (import.meta as any).hot.accept("./draft", function() {

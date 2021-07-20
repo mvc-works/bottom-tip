@@ -1,20 +1,27 @@
 import { h, diff, patch, VTree } from "virtual-dom";
 import createElement from "virtual-dom/create-element";
 
-var typeColorMap = {
-  ok: "#fedcd2",
+var typeTextColors = {
+  ok: "#444",
+  inactive: "hsla(0,0%,100%,0)",
+  error: "white",
+  warn: "white",
+};
+
+var typeBgColors = {
+  ok: "hsl(122deg 88% 88%)",
   inactive: "#bfd8d2",
-  error: "#df744a",
+  error: "#df644a",
   warn: "#dcb239",
 };
 
-export type PanelKind = "inactive" | "ok" | "warn" | "error";
+export type PanelKind = "inactive" | "ok" | "warn" | "error" | "ok~";
 
 function panelStyle(type: PanelKind, content: string) {
   var lineCount = content.split("\n").length;
   if (type == "inactive") {
     return {
-      color: "white",
+      color: typeTextColors[type],
       position: "fixed",
       bottom: 0,
       left: 0,
@@ -24,7 +31,7 @@ function panelStyle(type: PanelKind, content: string) {
       overflow: "hidden",
       lineHeight: "20px",
       transitionDuration: "300ms",
-      backgroundColor: typeColorMap[type],
+      backgroundColor: typeBgColors[type],
       fontFamily: "Source Code Pro, Menlo, monospace",
       fontSize: "12px",
       boxSizing: "border-box",
@@ -32,13 +39,13 @@ function panelStyle(type: PanelKind, content: string) {
     };
   } else {
     return {
-      color: "white",
+      color: typeTextColors[type],
       position: "fixed",
       bottom: 0,
       left: 0,
       width: "100%",
       maxHeight: "100%",
-      backgroundColor: typeColorMap[type],
+      backgroundColor: typeBgColors[type],
       fontFamily: "Source Code Pro, Menlo, monospace",
       whiteSpace: "pre",
       height: `${32 + 18 * lineCount}px`,
@@ -109,5 +116,12 @@ export default function(type: PanelKind, content: string) {
     mountTarget = document.createElement("div");
     document.body.append(mountTarget);
   }
-  renderTip(mountTarget, type, content || "");
+  if (type === "ok~") {
+    renderTip(mountTarget, "ok", content || "");
+    setTimeout(() => {
+      renderTip(mountTarget, "inactive", "");
+    }, 720);
+  } else {
+    renderTip(mountTarget, type, content || "");
+  }
 }
