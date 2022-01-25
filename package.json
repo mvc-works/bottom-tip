@@ -1,7 +1,8 @@
 {
   "name": "bottom-tip",
-  "version": "0.1.2",
+  "version": "0.1.3-a1",
   "description": "A div for displaying console.log messages, with some styles",
+  "type": "module",
   "main": "lib/bottom-tip.js",
   "scripts": {
     "prepublish": "yarn compile",
