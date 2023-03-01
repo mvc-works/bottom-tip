@@ -1,5 +1,6 @@
 import { h, diff, patch, VTree } from "virtual-dom";
 import createElement from "virtual-dom/create-element";
+import { nanoid } from "nanoid";
 
 var typeTextColors = {
   ok: "#444",
@@ -111,15 +112,22 @@ export function renderTip(target: HTMLDivElement, type: PanelKind, content: stri
 
 let mountTarget: HTMLDivElement = null;
 
-export default function(type: PanelKind, content: string) {
+/** ok~ tip has async task, need to check */
+let _transactionTag: string = null;
+
+export default function (type: PanelKind, content: string) {
   if (mountTarget == null) {
     mountTarget = document.createElement("div");
     document.body.append(mountTarget);
   }
+  _transactionTag = nanoid();
   if (type === "ok~") {
     renderTip(mountTarget, "ok", content || "");
+    let openTag = _transactionTag;
     setTimeout(() => {
-      renderTip(mountTarget, "inactive", "");
+      if (_transactionTag === openTag) {
+        renderTip(mountTarget, "inactive", "");
+      }
     }, 720);
   } else {
     renderTip(mountTarget, type, content || "");
