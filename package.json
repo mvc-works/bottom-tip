@@ -1,9 +1,9 @@
 {
   "name": "bottom-tip",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A div for displaying console.log messages, with some styles",
   "type": "module",
-  "main": "lib/bottom-tip.js",
+  "main": "./lib/bottom-tip.js",
   "scripts": {
     "prepublish": "yarn compile",
     "compile": "tsc --outDir lib/",
@@ -17,8 +17,8 @@
   "devDependencies": {
     "@types/virtual-dom": "^2.1.1",
     "prettier": "^2.8.4",
-    "typescript": "^4.9.5",
-    "vite": "^4.1.4"
+    "typescript": "^5.0.2",
+    "vite": "^4.2.0"
   },
   "dependencies": {
     "nanoid": "^4.0.1",

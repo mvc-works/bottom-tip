@@ -41,11 +41,12 @@ function panelStyle(type: PanelKind, content: string) {
   } else {
     return {
       color: typeTextColors[type],
+      boxShadow: "0 0 8px 2px hsla(0,0%,0%,0.1)",
       position: "fixed",
       bottom: 0,
       left: 0,
       width: "100%",
-      maxHeight: "100%",
+      maxHeight: "calc(100% - 40px)",
       backgroundColor: typeBgColors[type],
       fontFamily: "Source Code Pro, Menlo, monospace",
       whiteSpace: "pre",
@@ -72,8 +73,10 @@ var styleClose = {
 
 var styleContent = {
   width: "100%",
+  height: "100%",
+  boxSizing: "border-box",
   padding: "16px",
-  overflowX: "auto",
+  overflow: "auto",
 };
 
 function contentStyle(type: PanelKind) {

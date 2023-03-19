@@ -10,7 +10,8 @@ export function renderControl(
   makeOk: () => void,
   makeOkPop: () => void,
   makeWarn: () => void,
-  makeError: () => void
+  makeError: () => void,
+  makeLongError: () => void
 ) {
   var tree = h("div", {}, [
     h("button", { onclick: makeInactive }, ["inactive"]),
@@ -18,6 +19,7 @@ export function renderControl(
     h("button", { onclick: makeOkPop }, ["ok~"]),
     h("button", { onclick: makeWarn }, ["warn"]),
     h("button", { onclick: makeError }, ["error"]),
+    h("button", { onclick: makeLongError }, ["long error"]),
   ]);
 
   if (_rendered) {
