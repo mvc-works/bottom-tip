@@ -11,7 +11,7 @@ function makeInactive() {
   displayMsg();
 }
 
-var displayMsg = function() {
+var displayMsg = function () {
   renderBottomTip(typeRef, contentRef || null);
 };
 
@@ -38,16 +38,21 @@ function makeError() {
   contentRef = "this is \n an error, and \n it is \n long \nin \nmultiple lines";
   displayMsg();
 }
+function makeLongError() {
+  typeRef = "error";
+  contentRef = "this is \n an error, and \n it is \n long \nin \nmultiple lines".repeat(40);
+  displayMsg();
+}
 
 var oldWarn = console.warn;
 var oldError = console.error;
-console.warn = function(...args) {
+console.warn = function (...args) {
   oldWarn(...args);
   typeRef = "warn";
   contentRef = args.join("\n");
   displayMsg();
 };
-console.error = function(...args) {
+console.error = function (...args) {
   oldError(...args);
   typeRef = "error";
   contentRef = args.join("\n");
@@ -56,23 +61,23 @@ console.error = function(...args) {
 
 let container;
 
-window.addEventListener("load", function(event) {
+window.addEventListener("load", function (event) {
   container = document.querySelector("#container");
-  renderControl(container, makeInactive, makeOk, makeOkPop, makeWarn, makeError);
+  renderControl(container, makeInactive, makeOk, makeOkPop, makeWarn, makeError, makeLongError);
   displayMsg();
 });
 
 if ((import.meta as any).hot) {
-  (import.meta as any).hot.accept("./bottom-tip", function() {
+  (import.meta as any).hot.accept("./bottom-tip", function () {
     displayMsg();
     console.log("should accept");
   });
 
-  (import.meta as any).hot.accept("./control", function() {
-    renderControl(container, makeInactive, makeOk, makeOkPop, makeWarn, makeError);
+  (import.meta as any).hot.accept("./control", function () {
+    renderControl(container, makeInactive, makeOk, makeOkPop, makeWarn, makeError, makeLongError);
   });
 
-  (import.meta as any).hot.accept("./draft", function() {
+  (import.meta as any).hot.accept("./draft", function () {
     console.log("handling draft");
   });
 }
