@@ -18,7 +18,7 @@
     "@types/virtual-dom": "^2.1.1",
     "prettier": "^2.8.4",
     "typescript": "^5.0.2",
-    "vite": "^5.4.20"
+    "vite": "^6.4.2"
   },
   "dependencies": {
     "nanoid": "^5.0.9",
