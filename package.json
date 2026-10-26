@@ -7,7 +7,7 @@
   "scripts": {
     "prepublish": "yarn compile",
     "compile": "tsc --outDir lib/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test test/*.test.mjs"
   },
   "keywords": [
     "devtools"
@@ -21,7 +21,7 @@
     "vite": "^6.4.2"
   },
   "dependencies": {
-    "nanoid": "^5.0.9",
+    "nanoid": "^5.1.16",
     "virtual-dom": "^2.1.1"
   },
   "repository": {

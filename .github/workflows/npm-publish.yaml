@@ -12,10 +12,17 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 24
           cache: "yarn"
           registry-url: https://registry.npmjs.org/
 
-      - run: yarn && yarn tsc && npm publish
+      - name: Use the lockfile's Yarn version
+        run: |
+          corepack enable
+          corepack prepare yarn@1.22.22 --activate
+
+      - run: yarn install --frozen-lockfile && yarn compile && yarn test
+
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
