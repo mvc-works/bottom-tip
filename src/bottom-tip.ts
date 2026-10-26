@@ -1,5 +1,5 @@
 import { h, diff, patch, VTree } from "virtual-dom";
-import createElement from "virtual-dom/create-element";
+import createElement from "virtual-dom/create-element.js";
 import { nanoid } from "nanoid";
 
 var typeTextColors = {
